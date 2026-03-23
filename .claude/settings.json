@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "claude-opus-4-6",
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Bash(*)",
+      "Agent(*)",
+      "WebSearch(*)",
+      "WebFetch(*)",
+      "Skill(*)",
+      "TodoWrite(*)",
+      "NotebookEdit(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -qE 'rm -rf /|git push --force.*main|git reset --hard'; then echo 'BLOCKED: Destructive command detected. Confirm with user first.' >&2; exit 2; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'File saved. Remember to run your code formatter and linter if applicable.'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Session complete. Run your linter/analyzer to verify code health.'"
+          }
+        ]
+      }
+    ]
+  }
+}

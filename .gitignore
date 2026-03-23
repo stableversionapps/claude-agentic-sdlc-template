@@ -1,0 +1,71 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+vendor/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pip/
+
+# Build outputs
+build/
+dist/
+out/
+target/
+*.o
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+.nyc_output/
+htmlcov/
+
+# Generated files (uncomment as needed for your stack)
+# *.g.dart
+# *.freezed.dart
+# generated/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+*.jks
+credentials.json
+service-account.json
+
+# Package manager locks (uncomment ONE based on your preference)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Temporary files
+tmp/
+temp/
+*.tmp
