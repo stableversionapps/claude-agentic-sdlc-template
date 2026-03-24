@@ -302,6 +302,17 @@ When agents disagree or trade-offs arise:
 
 **Security > Correctness > UX > Performance > Features**
 
+
+### Prompt Principles
+
+1. **Be surgical** — narrow scope, specific files, explicit output format
+2. **Tell, don't ask** — "Build X" not "Can you help me with X?"
+3. **Skip preamble** — no "please", no context-setting. Jump to the task.
+4. **Specify deliverables** — "Code only" / "Table only" / "Verdict only"
+5. **Use slash commands** — `/code-review`, `/testing run` invoke skills directly
+
+
+
 ## License
 
 MIT License. Use this template for any project.
