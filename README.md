@@ -313,6 +313,29 @@ When agents disagree or trade-offs arise:
 
 
 
+### Anti-Patterns (Don't Do This)
+
+| Bad Prompt | Why It Wastes Tokens | Better Prompt |
+|-----------|---------------------|---------------|
+| `Help me improve the budgets screen` | Vague — Claude reads everything, generates long analysis | `Add filter chips to BudgetsScreen. Chips: All, Over Budget, On Track. Code only.` |
+| `Can you explain how the navigation works?` | Generates paragraphs of explanation | `Show me the route tree from router.dart. Table: path, screen, branch.` |
+| `Please review all the code and let me know what you think` | Reviews entire codebase | `/code-review` (reviews only changed files) |
+| `I want to add a new feature for tracking assets` | No specifics — Claude will ask questions | `Implement Assets feature: Drift table (AssetTable), DAO, Freezed entity, repository. Fields: id, name, type, purchaseValue, currentValue, purchaseDate. Code only.` |
+| `What should we do next?` | Open-ended brainstorming | `/sdlc-orchestration status` then `Decompose EPIC-03 into stories.` |
+
+---
+
+### Token Budget Tips
+
+1. **Use slash commands** — `/code-review`, `/testing run`, `/build-runner` are pre-optimized
+2. **One task per prompt** — don't combine "build + test + review" in one message
+3. **Specify file paths** — avoids search overhead
+4. **Say "Code only"** — suppresses explanations
+5. **Say "Table only"** or "Findings only" — for research/review tasks
+6. **Use agents for parallel work** — `Launch database-architect and ui-designer in parallel`
+7. **Avoid re-reading** — if Claude already has the file in context, don't ask it to read again
+
+
 ## License
 
 MIT License. Use this template for any project.
